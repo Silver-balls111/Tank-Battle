@@ -29,7 +29,7 @@ class GameManager:
         self.two_player_mode: bool = False
         self.last_with_bot: bool = True
         self.paused: bool = False
-        self.winner: str | None = None
+        self.winner: int | None = None
 
     def start_new_game(self, with_bot: bool) -> None:
         self.two_player_mode = not with_bot
@@ -58,11 +58,15 @@ class GameManager:
             self.tank2.update_ammo(self.game_start_time)
 
     def get_winner_text(self) -> str:
-        if not self.winner:
+        if self.winner is None:
             return ""
         if self.two_player_mode:
-            return f"Player {self.winner} Wins!"
+            return f"Player {self.winner} Won!"
         return "YOU WIN!" if self.winner == 1 else "BOT Wins!"
+
+    def set_winner(self, player_num: int) -> None:
+        self.winner = player_num
+        self.state = GameState.WINNER
 
     def reset_to_main(self) -> None:
         self.state = GameState.MAIN

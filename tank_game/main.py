@@ -76,7 +76,7 @@ def main() -> None:
             ui.draw_pause_menu(screen, font, big_font)
 
         if game.state == GameState.WINNER:
-            ui.draw_winner_screen(screen, game.winner, font, big_font)
+            ui.draw_winner_screen(screen, game.get_winner_text(), font, big_font)
 
         pygame.display.flip()
         clock.tick(const.FPS)
@@ -136,8 +136,7 @@ def _update_game(game: GameManager, sound_manager) -> None:
         if hit:
             game.bullets.remove(b)
             if tank and tank.health <= 0:
-                game.winner = game.get_winner_text()
-                game.state = GameState.WINNER
+                game.set_winner(b.owner)
 
 
 if __name__ == "__main__":
