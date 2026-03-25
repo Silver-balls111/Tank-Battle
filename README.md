@@ -110,7 +110,6 @@ Tank-_Battle/
 │   ├── background_music.mp3  # Background music
 │   └── bullet_fire.wav.mp3    # Shooting sound
 ├── README.md                 # This file
-└── PROJECT_STATE.md          # Project state for AI agents
 ```
 
 ## License
